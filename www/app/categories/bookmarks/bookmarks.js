@@ -22,6 +22,8 @@ angular.module('categories.bookmarks', [
     .controller('BookmarksListCtrl', function ($stateParams, CategoriesModel, BookmarksModel) {
         var bookmarksListCtrl = this;
 
+        bookmarksListCtrl.title = $stateParams.category || 'Bookmarks';
+
         CategoriesModel.setCurrentCategory($stateParams.category);
 
         BookmarksModel.getBookmarks()
@@ -29,9 +31,9 @@ angular.module('categories.bookmarks', [
                 bookmarksListCtrl.bookmarks = bookmarks;
             });
 
-        bookmarksListCtrl.goToUrl = function goToUrl(bookmark) {
+        bookmarksListCtrl.goToUrl = function (bookmark) {
             window.open(bookmark.url, '_system');
-        }
+        };
 
         bookmarksListCtrl.getCurrentCategory = CategoriesModel.getCurrentCategory;
         bookmarksListCtrl.getCurrentCategoryName = CategoriesModel.getCurrentCategoryName;
@@ -39,4 +41,3 @@ angular.module('categories.bookmarks', [
     })
 
 ;
-
